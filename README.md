@@ -68,3 +68,60 @@ php artisan serve
 ```
 
 And open the browser an put **localhost:8000** and proof the application
+
+## API
+
+The URL REQUESTS for the api are
+
+##### Authentication
+- [POST] **Login** -> http://localhost:8000/api/v1/auth/login
+Data to send (example)
+```json
+{
+  "email": "john.doe@email.com",
+  "password": "password"
+}
+```
+- [POST] **Register** -> http://localhost:8000/api/v1/auth/register
+Data to send (example)
+```json
+{
+  "name": "John Doe",
+  "email": "john.doe@email.com",
+  "password": "password"
+}
+```
+- [POST] **Logout** -> http://localhost:8000/api/v1/auth/logout
+No data to send (example)
+But this endpoint need the **Authentication Header**
+```json
+{
+  "headers": {
+    "Authorization": "Bearer {{TOKEN}}"
+  }
+}
+```
+
+##### User
+- [GET] **Get users paginated** -> http://localhost:8000/api/v1/users?search=&page=1
+In the **search** query send the name or email and return the users paginated according to the search query 
+- [POST] **Create User** -> http://localhost:8000/api/v1/users
+Data to send (example)
+```json
+{
+  "name": "John Doe",
+  "email": "john.doe@email.com",
+  "password": "password"
+}
+```
+- [PUT] **Update user** -> http://localhost:8000/api/v1/users/{{uid}}
+The **uid** is the id of user to delete
+Data to send (example)
+```json
+{
+  "name": "John Doe",
+  "email": "john.doe@email.com",
+}
+```
+- [DELETE] **Delete User** -> http://localhost:8000/api/v1/users/{{uid}}
+The **uid** is the id of user to delete
